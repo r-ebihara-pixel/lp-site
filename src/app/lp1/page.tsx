@@ -1,7 +1,7 @@
 "use client";
 
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform, type HTMLMotionProps } from 'framer-motion';
 import { ArrowRight, CheckCircle2, Footprints, Calendar, Monitor, Coffee, Sparkles, Zap, Smartphone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
@@ -9,8 +9,8 @@ const fadeIn = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
   viewport: { once: true },
-  transition: { duration: 0.8 }
-};
+  transition: { duration: 0.8 },
+} satisfies Omit<HTMLMotionProps<"div">, "ref">;
 
 const staggerContainer = {
   animate: { transition: { staggerChildren: 0.1 } }
