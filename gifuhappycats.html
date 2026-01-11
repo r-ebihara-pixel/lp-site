@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NECOREPUBLIC - 猫と人が幸せに暮らせる社会のために</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Mochiy+Pop+One&family=Noto+Sans+JP:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    /* Color Palette based on the image */
+    --color-primary-orange: #E6673D;
+    --color-secondary-green: #3A8E74;
+    --color-accent-yellow: #FFD500;
+    --color-accent-blue: #4F81E3;
+    --color-bg-light: #F9F5E6;
+    --color-text-dark: #333333;
+    --color-text-white: #FFFFFF;
+    --font-playful: 'Mochiy Pop One', sans-serif;
+    --font-standard: 'Noto Sans JP', sans-serif;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: var(--font-standard);
+    background-color: var(--color-bg-light);
+    color: var(--color-text-dark);
+    line-height: 1.6;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: var(--font-playful);
+    margin: 0;
+  }
+
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  .container {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 20px;
+  }
+
+  .text-orange { color: var(--color-primary-orange); }
+  .text-green { color: var(--color-secondary-green); }
+  .text-center { text-align: center; }
+
+  /* --- Header --- */
+  header {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .logo { font-weight: bold; font-size: 1.2rem; }
+
+  /* --- Hero Section --- */
+  .hero {
+    position: relative;
+    padding: 100px 0 150px;
+    overflow: hidden;
+    background: var(--color-bg-light);
+  }
+  .hero-bg-shape-1 {
+    position: absolute;
+    top: 0; left: 0; width: 50%; height: 100%;
+    background: #6BCAC0; /* Light green */
+    clip-path: polygon(0 0, 100% 0, 80% 100%, 0% 100%);
+    z-index: 1;
+  }
+  .hero-bg-shape-2 {
+    position: absolute;
+    top: 50px; right: 0; width: 60%; height: 80%;
+    background: var(--color-accent-yellow);
+    border-radius: 50% 0 0 50%;
+    z-index: 1;
+  }
+  .hero-bg-shape-3 {
+    position: absolute;
+    bottom: 0; left: 30%; width: 40%; height: 50%;
+    background: var(--color-primary-orange);
+    border-radius: 50% 50% 0 0;
+    z-index: 1;
+  }
+  .hero-content {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .hero-text {
+    flex: 1;
+  }
+  .hero-text h1 {
+    font-size: 2.5rem;
+    line-height: 1.3;
+    margin-bottom: 20px;
+    background: #fff;
+    display: inline-block;
+    padding: 10px 20px;
+    border-radius: 30px;
+    position: relative;
+  }
+  .hero-text h1::after {
+    content: '';
+    position: absolute;
+    bottom: -10px; right: 30px;
+    width: 20px; height: 20px;
+    background: #fff;
+    clip-path: polygon(0 0, 100% 0, 50% 100%);
+  }
+  .hero-image {
+    flex: 1;
+    text-align: right;
+    position: relative;
+  }
+  .hero-cat {
+    width: 300px;
+    position: relative;
+    z-index: 3;
+  }
+  .hero-peeking-cat {
+    position: absolute;
+    top: 20px;
+    left: -50px;
+    width: 120px;
+    z-index: 3;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+
+
+  /* --- NECOREPUBLIC Title Banner --- */
+  .neco-banner {
+    background: #fff;
+    padding: 15px 0;
+    text-align: center;
+    font-family: var(--font-playful);
+    font-size: 1.5rem;
+    border-bottom: 3px solid var(--color-accent-yellow);
+    position: relative;
+  }
+  .neco-banner span { color: var(--color-primary-orange); }
+  .neco-banner::before, .neco-banner::after {
+    content: '🐱';
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .neco-banner::before { left: 20%; }
+  .neco-banner::after { right: 20%; }
+
+
+  /* --- Intro Section --- */
+  .intro-section { padding: 80px 0; }
+  .intro-block {
+    display: flex;
+    align-items: center;
+    margin-bottom: 60px;
+    gap: 40px;
+  }
+  .intro-block:nth-child(even) { flex-direction: row-reverse; }
+  .intro-text { flex: 1; }
+  .intro-image {
+    flex: 1;
+    position: relative;
+  }
+  .blob-shape {
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+  }
+  .blob-1 { top: -20px; right: -20px; width: 80px; height: 80px; background: var(--color-accent-blue); }
+  .blob-2 { bottom: -30px; left: -30px; width: 100px; height: 100px; background: var(--color-secondary-green); }
+  
+  .cat-img-container {
+    position: relative;
+    z-index: 2;
+    border-radius: 40% 60% 70% 30% / 50% 60% 30% 70%;
+    overflow: hidden;
+    border: 5px solid #fff;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+
+
+  /* --- Cat Message Section --- */
+  .cat-message-section {
+    padding: 100px 0;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+  }
+  .cat-message-box {
+    background: var(--color-primary-orange);
+    color: #fff;
+    padding: 60px 80px;
+    width: 100%;
+    max-width: 700px;
+    /* Creating a cat head shape */
+    clip-path: path('M 150 50 Q 200 0 300 20 Q 400 0 450 50 Q 550 150 500 300 Q 300 400 100 300 Q 50 150 150 50 Z');
+    /* Simplified shape for compatibility, a real SVG path would be more precise */
+    border-radius: 50% 50% 45% 45%;
+    position: relative;
+  }
+  .cat-message-box::after {
+    content: '';
+    position: absolute;
+    bottom: -30px; left: 50%;
+    transform: translateX(-50%);
+    width: 0; height: 0;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 40px solid var(--color-primary-orange);
+  }
+  .cat-message-box h3 { font-size: 1.5rem; margin-bottom: 20px; }
+
+
+  /* --- News Section --- */
+  .news-section { padding: 60px 0; text-align: center; }
+  .news-title {
+    font-family: var(--font-playful);
+    font-size: 2rem;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 40px;
+  }
+  .news-title::before, .news-title::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 50px; height: 50px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    transform: translateY(-50%);
+  }
+  .news-title::before { left: -70px; background-image: url('https://placehold.co/50x50/E6673D/fff?text=Cat'); }
+  .news-title::after { right: -70px; background-image: url('https://placehold.co/50x50/3A8E74/fff?text=Cat'); }
+  .news-list {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+    display: inline-block;
+  }
+  .news-list li {
+    margin-bottom: 15px;
+    border-bottom: 1px dotted #ccc;
+    padding-bottom: 10px;
+  }
+  .news-date { font-weight: bold; margin-right: 15px; color: var(--color-primary-orange); }
+
+
+  /* --- Projects Section --- */
+  .projects-section { padding: 80px 0; }
+  .project-item {
+    display: flex;
+    align-items: flex-start;
+    margin-bottom: 80px;
+    gap: 40px;
+  }
+  .project-item:nth-child(even) { flex-direction: row-reverse; }
+  .project-image-wrapper {
+    flex: 1;
+    position: relative;
+    padding: 20px;
+  }
+  .project-bg-shape {
+    position: absolute;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    border-radius: 50%;
+    z-index: 1;
+  }
+  .bg-yellow { background: rgba(255, 213, 0, 0.3); }
+  .bg-blue { background: rgba(79, 129, 227, 0.3); }
+  .bg-green { background: rgba(58, 142, 116, 0.3); }
+
+  .project-image-wrapper img {
+    position: relative;
+    z-index: 2;
+    border-radius: 20px;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+  }
+  .project-content { flex: 1; padding-top: 20px; }
+  .project-title {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+  }
+  .project-icon {
+    width: 40px; height: 40px;
+    margin-right: 15px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  }
+
+
+  /* --- CTA Banner Section --- */
+  .cta-banner {
+    background: var(--color-primary-orange);
+    padding: 100px 0 150px;
+    position: relative;
+    text-align: center;
+    color: #fff;
+  }
+  .cta-title {
+    font-size: 2rem;
+    margin-bottom: 60px;
+    display: inline-block;
+    background: #fff;
+    color: var(--color-primary-orange);
+    padding: 15px 40px;
+    border-radius: 50px;
+    position: relative;
+  }
+  .cta-title::after {
+    content: '';
+    position: absolute;
+    bottom: -15px; left: 50%;
+    transform: translateX(-50%);
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border-top: 20px solid #fff;
+  }
+  .cta-cards {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    flex-wrap: wrap;
+    position: relative;
+    z-index: 2;
+  }
+  .cta-card {
+    background: #fff;
+    color: var(--color-text-dark);
+    padding: 30px 20px;
+    border-radius: 20px;
+    width: 200px;
+    text-align: left;
+    position: relative;
+  }
+  .cta-card h4 { color: var(--color-primary-orange); margin-bottom: 10px; }
+  .cta-card p { font-size: 0.9rem; }
+  .cta-card::after {
+    content: '';
+    position: absolute;
+    bottom: -20px; left: 30px;
+    border-left: 15px solid transparent;
+    border-right: 15px solid transparent;
+    border-top: 20px solid #fff;
+  }
+  .peeking-cat-cta {
+    position: absolute;
+    width: 100px;
+    z-index: 1;
+  }
+  .cat-left { top: 150px; left: 10%; }
+  .cat-right { top: 100px; right: 10%; transform: scaleX(-1); }
+  
+  .big-cat-bottom {
+    position: absolute;
+    bottom: -1px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 300px;
+  }
+  .cta-footer-text {
+    position: absolute;
+    bottom: 40px; width: 100%;
+    font-family: var(--font-playful);
+    font-size: 1.8rem;
+  }
+
+
+  /* --- Project Links Section --- */
+  .project-links-section { padding: 80px 0; }
+  .project-link-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .project-link-card {
+    background: #fff;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+  }
+  .card-header {
+    padding: 20px;
+    color: #fff;
+    font-family: var(--font-playful);
+    font-size: 1.2rem;
+  }
+  .header-green { background: var(--color-secondary-green); }
+  .header-blue { background: var(--color-accent-blue); }
+  
+  .card-body { padding: 30px 20px; text-align: center; }
+  .btn {
+    display: inline-block;
+    padding: 10px 30px;
+    border-radius: 30px;
+    text-decoration: none;
+    font-weight: bold;
+    margin-top: 20px;
+  }
+  .btn-orange { background: var(--color-primary-orange); color: #fff; }
+  .btn-green { background: var(--color-secondary-green); color: #fff; }
+  .btn-blue { background: var(--color-accent-blue); color: #fff; }
+
+
+  /* --- Gallery Section --- */
+  .gallery-section { padding: 60px 0; }
+  .gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 10px;
+  }
+  .gallery-item img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 10px;
+  }
+  .gallery-cat-illustration {
+    text-align: right;
+    margin-bottom: -50px;
+    position: relative;
+    z-index: 2;
+  }
+  .gallery-cat-illustration img {
+    display: inline-block;
+    width: 150px;
+  }
+
+
+  /* --- More Links Section --- */
+  .more-links-section { padding: 60px 0; }
+  .more-links-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+  }
+  .more-link-item {
+    border-radius: 20px;
+    overflow: hidden;
+    position: relative;
+    height: 150px;
+  }
+  .more-link-item img {
+    width: 100%; height: 100%; object-fit: cover;
+  }
+  .more-link-overlay {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    font-family: var(--font-playful);
+    font-size: 1.2rem;
+    background: rgba(0,0,0,0.3);
+  }
+  .overlay-blue { background: rgba(79, 129, 227, 0.7); }
+  .overlay-yellow { background: rgba(255, 213, 0, 0.7); color: var(--color-text-dark); }
+  .overlay-pink { background: rgba(230, 103, 61, 0.7); }
+
+
+  /* --- Footer --- */
+  .footer-doors {
+    display: flex;
+    justify-content: center;
+    gap: 50px;
+    padding: 60px 0;
+    background: #fff;
+  }
+  .door-item { text-align: center; }
+  .door-item img { width: 80px; margin: 0 auto 20px; }
+  
+  .site-footer {
+    background: var(--color-primary-orange);
+    color: #fff;
+    padding: 40px 20px;
+    text-align: center;
+    position: relative;
+  }
+  .footer-links {
+    margin-bottom: 20px;
+  }
+  .footer-links a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  .footer-cat-corner {
+    position: absolute;
+    bottom: 20px; right: 20px;
+    width: 60px;
+    background: #fff;
+    border-radius: 50%;
+    padding: 5px;
+  }
+
+
+  /* --- Responsive Design --- */
+  @media (max-width: 768px) {
+    .hero-content,
+    .intro-block,
+    .intro-block:nth-child(even),
+    .project-item,
+    .project-item:nth-child(even) {
+      flex-direction: column;
+      text-align: center;
+    }
+    .hero-image, .intro-image, .project-image-wrapper {
+      text-align: center;
+      margin-top: 40px;
+    }
+    .hero-text h1 { font-size: 1.8rem; }
+    .cta-cards { flex-direction: column; align-items: center; }
+    .project-link-grid, .more-links-grid { grid-template-columns: 1fr; }
+    .cat-message-box { border-radius: 30px; clip-path: none; }
+    .cat-message-box::after { display: none; }
+  }
+
+</style>
+</head>
+<body>
+
+  <header>
+    <div class="logo">NECOREPUBLIC</div>
+    <nav>
+      <a href="#" style="text-decoration: none; color: var(--color-text-dark);">Menu</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-bg-shape-1"></div>
+      <div class="hero-bg-shape-2"></div>
+      <div class="hero-bg-shape-3"></div>
+      <div class="container hero-content">
+        <div class="hero-text">
+          <h1>猫と人が<br>幸せに暮らせる社会のために</h1>
+          <p>私たちネコリパブリックは、地域の猫問題解決と、猫と人が共生できる社会の実現を目指しています。</p>
+        </div>
+        <div class="hero-image">
+          <img src="https://placehold.co/120x120/E6673D/fff?text=Cat" alt="Peeking Cat" class="hero-peeking-cat">
+          <img src="https://placehold.co/300x400/ccc/333?text=Main+Cat" alt="Hero Cat" class="hero-cat">
+        </div>
+      </div>
+    </section>
+
+    <div class="neco-banner">
+      NECOREPUBLIC <span>猫</span> との暮らしを <span>豊か</span> に
+    </div>
+
+    <section class="intro-section container">
+      <div class="intro-block">
+        <div class="intro-text">
+          <h3 class="text-orange">すべての猫に、温かい居場所を。</h3>
+          <p>私たちは保護猫カフェの運営を通じて、猫たちの新しい家族探しをしています。一匹でも多くの命を救い、幸せな未来へと繋げるために、日々活動を続けています。</p>
+        </div>
+        <div class="intro-image">
+          <div class="blob-shape blob-1"></div>
+          <div class="cat-img-container">
+            <img src="https://placehold.co/400x300/eee/999?text=Cat+Image+1" alt="Intro Cat 1">
+          </div>
+        </div>
+      </div>
+      <div class="intro-block">
+        <div class="intro-text">
+          <h3 class="text-green">猫との暮らしが、人を変える。</h3>
+          <p>猫との生活は、私たちに癒しと笑顔をもたらしてくれます。猫と暮らすことの素晴らしさを伝え、保護猫を家族に迎えるという選択肢を広めていきたいと考えています。</p>
+        </div>
+        <div class="intro-image">
+          <div class="blob-shape blob-2"></div>
+          <div class="cat-img-container">
+            <img src="https://placehold.co/400x300/eee/999?text=Cat+Image+2" alt="Intro Cat 2">
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cat-message-section container">
+      <div class="cat-message-box">
+        <h3>私たち人間の<br>小さな一歩が<br>猫たちの大きな未来を変える</h3>
+        <p>保護猫活動への参加は、決して難しいことではありません。寄付やボランティア、あるいはただ「知る」ことだけでも、大きな力になります。私たちと一緒に、できることから始めてみませんか？</p>
+      </div>
+    </section>
+
+    <section class="news-section container">
+      <h2 class="news-title">NEWS</h2>
+      <br>
+      <ul class="news-list">
+        <li><span class="news-date">2023.10.27</span>保護猫譲渡会のお知らせ</li>
+        <li><span class="news-date">2023.10.15</span>新店舗オープン記念キャンペーン</li>
+        <li><span class="news-date">2023.10.01</span>クラウドファンディング開始しました</li>
+      </ul>
+    </section>
+
+    <section class="projects-section container">
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <div class="project-bg-shape bg-yellow"></div>
+          <img src="https://placehold.co/400x300/eee/999?text=Project+1" alt="Project 1">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">
+            <img src="https://placehold.co/40x40/E6673D/fff?text=Icon" alt="Icon" class="project-icon">
+            保護猫カフェ運営
+          </h3>
+          <p>全国で保護猫カフェを運営し、猫たちと新しい家族の出会いの場を提供しています。</p>
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <div class="project-bg-shape bg-blue"></div>
+          <img src="https://placehold.co/400x300/eee/999?text=Project+2" alt="Project 2">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">
+            <img src="https://placehold.co/40x40/3A8E74/fff?text=Icon" alt="Icon" class="project-icon">
+            TNR活動・地域猫活動
+          </h3>
+          <p>不幸な命を増やさないため、不妊去勢手術の推進と地域猫活動のサポートを行っています。</p>
+        </div>
+      </div>
+      <div class="project-item">
+        <div class="project-image-wrapper">
+          <div class="project-bg-shape bg-green"></div>
+          <img src="https://placehold.co/400x300/eee/999?text=Project+3" alt="Project 3">
+        </div>
+        <div class="project-content">
+          <h3 class="project-title">
+            <img src="https://placehold.co/40x40/E6673D/fff?text=Icon" alt="Icon" class="project-icon">
+            啓発・教育活動
+          </h3>
+          <p>イベントやセミナーを通じて、猫の適正飼育や保護猫についての理解を深める活動をしています。</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-banner">
+      <img src="https://placehold.co/100x100/fff/E6673D?text=Cat" alt="Peeking Cat Left" class="peeking-cat-cta cat-left">
+      <img src="https://placehold.co/100x100/fff/E6673D?text=Cat" alt="Peeking Cat Right" class="peeking-cat-cta cat-right">
+      <div class="container">
+        <h2 class="cta-title">あなたも活動に参加しませんか？</h2>
+        <div class="cta-cards">
+          <div class="cta-card">
+            <h4>里親になる</h4>
+            <p>保護猫を家族に迎え、一生涯のパートナーとして大切に育ててください。</p>
+          </div>
+          <div class="cta-card">
+            <h4>寄付をする</h4>
+            <p>皆様からのご支援が、猫たちの医療費や食費、活動資金となります。</p>
+          </div>
+          <div class="cta-card">
+            <h4>ボランティア</h4>
+            <p>シェルターのお世話やイベントのお手伝いなど、あなたの力を貸してください。</p>
+          </div>
+          <div class="cta-card">
+            <h4>広める</h4>
+            <p>SNSでのシェアや友人への紹介も、立派な支援活動の一つです。</p>
+          </div>
+        </div>
+      </div>
+      <img src="https://placehold.co/300x200/fff/E6673D?text=Big+Cat+Bottom" alt="Big Cat Bottom" class="big-cat-bottom">
+      <div class="cta-footer-text">人の手を借りたいにゃ！</div>
+    </section>
+
+    <section class="project-links-section container">
+      <div class="project-link-grid">
+        <div class="project-link-card">
+          <div class="card-header header-green">保護猫を家族に迎える</div>
+          <div class="card-body">
+            <p>現在里親募集中の猫たちをご紹介します。</p>
+            <a href="#" class="btn btn-green">里親募集一覧を見る</a>
+          </div>
+        </div>
+        <div class="project-link-card">
+          <div class="card-header header-green">活動を支援する</div>
+          <div class="card-body">
+            <p>継続的なご支援で猫たちの命を繋ぎます。</p>
+            <a href="#" class="btn btn-orange">マンスリーサポーターになる</a>
+          </div>
+        </div>
+        <div class="project-link-card">
+          <div class="card-header header-blue">オンラインストア</div>
+          <div class="card-body">
+            <p>お買い物で保護猫活動を支援できます。</p>
+            <a href="#" class="btn btn-blue">ストアを見る</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="gallery-section container">
+      <div class="gallery-cat-illustration">
+        <img src="https://placehold.co/150x150/ccc/999?text=Cat+Illust" alt="Cat Illustration">
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+1" alt="Gallery 1"></div>
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+2" alt="Gallery 2"></div>
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+3" alt="Gallery 3"></div>
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+4" alt="Gallery 4"></div>
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+5" alt="Gallery 5"></div>
+        <div class="gallery-item"><img src="https://placehold.co/200x200/eee/999?text=Photo+6" alt="Gallery 6"></div>
+      </div>
+    </section>
+
+    <section class="more-links-section container">
+      <div class="more-links-grid">
+        <div class="more-link-item">
+          <img src="https://placehold.co/300x150/eee/999?text=Link+1" alt="Link 1">
+          <div class="more-link-overlay overlay-blue">店舗情報</div>
+        </div>
+        <div class="more-link-item">
+          <img src="https://placehold.co/300x150/eee/999?text=Link+2" alt="Link 2">
+          <div class="more-link-overlay overlay-yellow">会社概要</div>
+        </div>
+        <div class="more-link-item">
+          <img src="https://placehold.co/300x150/eee/999?text=Link+3" alt="Link 3">
+          <div class="more-link-overlay overlay-pink">お問い合わせ</div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-doors">
+      <div class="door-item">
+        <img src="https://placehold.co/80x120/ccc/999?text=Door+1" alt="Door 1">
+        <p>猫の<br>入り口</p>
+      </div>
+      <div class="door-item">
+        <img src="https://placehold.co/80x120/ccc/999?text=Door+2" alt="Door 2">
+        <p>人の<br>入り口</p>
+      </div>
+    </div>
+    <div class="site-footer">
+      <div class="footer-links">
+        <a href="#">プライバシーポリシー</a> | <a href="#">特定商取引法に基づく表記</a>
+      </div>
+      <p>&copy; 2023 NECOREPUBLIC All rights reserved.</p>
+      <img src="https://placehold.co/60x60/fff/E6673D?text=Cat" alt="Footer Cat" class="footer-cat-corner">
+    </div>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,1094 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Unrep風（配色も含む雰囲気）LPテンプレ｜Copyright-safe</title>
+  <meta name="description" content="ミニマル×強めタイポ×ネオン差し色のLPテンプレ。文言・画像はプレースホルダーです。" />
+
+  <!-- Replace with licensed fonts if you need a specific family -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      /* Base surfaces (light like the screenshot) */
+      --bg: #efefed;          /* warm gray */
+      --ink: #0f0f10;         /* near-black text */
+      --muted: rgba(15,15,16,.65);
+      --line: rgba(15,15,16,.12);
+      --panel: rgba(255,255,255,.70);
+      --shadow: 0 18px 60px rgba(0,0,0,.12);
+
+      /* Dark bands */
+      --dark: #121213;
+      --dark-2: #19191b;
+      --dark-ink: rgba(255,255,255,.92);
+      --dark-muted: rgba(255,255,255,.70);
+      --dark-line: rgba(255,255,255,.12);
+
+      /* Accent palette (neon-ish, inspired but not copied) */
+      --lime: #caff1a;
+      --pink: #ff3d7a;
+      --orange: #ffb01a;
+      --cyan: #00d7ff;
+      --purple: #9b5cff;
+
+      --radius-xl: 28px;
+      --radius-lg: 18px;
+      --radius-md: 14px;
+
+      --max: 1120px;
+      --gutter: clamp(18px, 4vw, 40px);
+
+      --h1: clamp(34px, 5.4vw, 70px);
+      --h2: clamp(26px, 3.2vw, 40px);
+      --h3: clamp(18px, 2.1vw, 24px);
+
+      --mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+      --sans: Inter, "Noto Sans JP", system-ui, -apple-system, Segoe UI, Roboto, "Hiragino Kaku Gothic ProN", Meiryo, sans-serif;
+    }
+
+    *{ box-sizing: border-box; }
+    html{ scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: var(--sans);
+      color: var(--ink);
+      line-height: 1.6;
+      letter-spacing: .01em;
+      background:
+        radial-gradient(900px 520px at 10% -10%, rgba(255,255,255,.75), transparent 60%),
+        radial-gradient(700px 460px at 90% 0%, rgba(0,0,0,.04), transparent 62%),
+        var(--bg);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+      overflow-x: hidden;
+    }
+    a{ color: inherit; text-decoration: none; }
+    img{ max-width: 100%; height: auto; display:block; }
+    .container{ width: min(var(--max), calc(100% - var(--gutter)*2)); margin-inline: auto; }
+    .section{ padding: clamp(58px, 8vw, 108px) 0; position: relative; }
+    .divider{ border-top: 1px solid var(--line); }
+
+    /* Utility */
+    .mono{ font-family: var(--mono); }
+    .muted{ color: var(--muted); }
+    .sr{ position:absolute; width:1px; height:1px; padding:0; margin:-1px; overflow:hidden; clip:rect(0,0,0,0); white-space:nowrap; border:0; }
+
+    /* Highlight (neon underline like the screenshot vibe) */
+    .hl{
+      padding: .05em .08em;
+      background:
+        linear-gradient(90deg, color-mix(in srgb, var(--lime) 85%, white),
+                              color-mix(in srgb, var(--orange) 70%, white),
+                              color-mix(in srgb, var(--pink) 70%, white));
+      border-radius: 999px;
+      box-decoration-break: clone;
+    }
+
+    /* Header */
+    .header{
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      backdrop-filter: blur(10px);
+      background: color-mix(in srgb, var(--bg) 80%, transparent);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      gap: 16px;
+      padding: 14px 0;
+    }
+    .brand{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      min-width: 220px;
+    }
+    .logo{
+      width: 36px;
+      height: 36px;
+      border-radius: 12px;
+      background:
+        radial-gradient(12px 12px at 30% 30%, rgba(255,255,255,.95), transparent 60%),
+        radial-gradient(22px 18px at 70% 70%, rgba(0,0,0,.08), transparent 60%),
+        conic-gradient(from 220deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan), var(--lime));
+      border: 1px solid var(--line);
+      box-shadow: var(--shadow);
+    }
+    .brand strong{ font-weight: 900; letter-spacing: .02em; }
+    .brand small{ display:block; color: var(--muted); font-size: 12px; margin-top: 2px; }
+
+    .menu{
+      display:flex;
+      align-items:center;
+      gap: 12px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+    .menu a{
+      font-size: 13px;
+      color: var(--muted);
+      padding: 8px 10px;
+      border-radius: 10px;
+    }
+    .menu a:hover{ color: var(--ink); background: rgba(0,0,0,.04); }
+
+    .actions{ display:flex; gap: 10px; align-items:center; min-width: 220px; justify-content: flex-end; }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.65);
+      color: var(--ink);
+      font-weight: 700;
+      font-size: 13px;
+      cursor: pointer;
+      transition: transform .15s ease, background .15s ease, border-color .15s ease;
+      user-select: none;
+    }
+    .btn:hover{ transform: translateY(-1px); background: rgba(255,255,255,.92); border-color: color-mix(in srgb, var(--line) 55%, var(--ink)); }
+    .btn.primary{
+      background: var(--ink);
+      color: rgba(255,255,255,.95);
+      border-color: transparent;
+      box-shadow: 0 14px 40px rgba(0,0,0,.18);
+    }
+    .btn.primary:hover{ transform: translateY(-1px) scale(1.01); }
+
+    .dot{
+      width: 10px; height: 10px;
+      border-radius: 99px;
+      background: conic-gradient(from 220deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan), var(--lime));
+    }
+
+    /* Mobile nav */
+    .burger{ display:none; }
+    @media (max-width: 860px){
+      .menu{ display:none; }
+      .actions{ min-width: auto; }
+      .burger{ display:inline-flex; }
+    }
+    .drawer{
+      display:none;
+      border-top: 1px solid var(--line);
+    }
+    .drawer.open{ display:block; }
+    .drawer a{
+      display:flex;
+      align-items:center;
+      justify-content: space-between;
+      padding: 14px 0;
+      color: var(--muted);
+      border-bottom: 1px solid rgba(0,0,0,.06);
+      font-size: 14px;
+    }
+    .drawer a:hover{ color: var(--ink); }
+
+    /* Hero */
+    .hero{
+      padding-top: clamp(34px, 5vw, 56px);
+      padding-bottom: clamp(56px, 7vw, 94px);
+      position: relative;
+      overflow: clip;
+    }
+    /* Big colorful blob (color approach) */
+    .hero::before{
+      content:"";
+      position:absolute;
+      left: clamp(-220px, -18vw, -120px);
+      top: clamp(-180px, -10vw, -90px);
+      width: clamp(520px, 55vw, 880px);
+      height: clamp(520px, 55vw, 880px);
+      border-radius: 40%;
+      background:
+        radial-gradient(closest-side, rgba(255,255,255,.65), transparent 60%),
+        conic-gradient(from 230deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan), var(--lime));
+      filter: blur(0px) saturate(1.05);
+      opacity: .95;
+      transform: rotate(10deg);
+      pointer-events:none;
+      mix-blend-mode: multiply;
+    }
+    /* subtle dots like the screenshot sections */
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset: 0;
+      background-image: radial-gradient(rgba(0,0,0,.06) 1px, transparent 1px);
+      background-size: 14px 14px;
+      opacity: .18;
+      pointer-events:none;
+      mask-image: radial-gradient(closest-side at 70% 30%, rgba(0,0,0,1), transparent 70%);
+    }
+
+    .hero-grid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: clamp(20px, 3.8vw, 48px);
+      align-items: start;
+      position: relative;
+      z-index: 1;
+    }
+    @media (max-width: 940px){
+      .hero-grid{ grid-template-columns: 1fr; }
+    }
+
+    .kicker{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 8px 12px;
+      border: 1px solid var(--line);
+      background: rgba(255,255,255,.65);
+      border-radius: 999px;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 16px;
+      width: fit-content;
+    }
+    .kicker code{
+      font-family: var(--mono);
+      font-size: 12px;
+      color: var(--ink);
+      background: transparent;
+    }
+
+    h1{
+      font-size: var(--h1);
+      line-height: 1.05;
+      letter-spacing: -0.02em;
+      margin: 0 0 14px;
+      font-weight: 900;
+    }
+    .lead{
+      color: var(--muted);
+      font-size: clamp(15px, 1.7vw, 18px);
+      margin: 0 0 24px;
+      max-width: 60ch;
+    }
+    .hero-cta{ display:flex; gap: 12px; flex-wrap: wrap; align-items:center; }
+
+    .hero-card{
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.72);
+      border-radius: var(--radius-xl);
+      box-shadow: var(--shadow);
+      padding: 18px;
+    }
+
+    /* bubbles (dark chips with colored text, like the screenshot vibe) */
+    .bubbles{ display:flex; flex-direction: column; gap: 10px; }
+    .bubble{
+      display:grid;
+      grid-template-columns: auto 1fr;
+      gap: 12px;
+      align-items: start;
+      padding: 12px 12px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(16,16,18,.92);
+      color: rgba(255,255,255,.92);
+    }
+    .avatar{
+      width: 34px; height: 34px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,.18);
+      background:
+        radial-gradient(10px 10px at 30% 30%, rgba(255,255,255,.55), transparent 60%),
+        conic-gradient(from 220deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan), var(--lime));
+    }
+    .bubble .role{ font-size: 12px; color: rgba(255,255,255,.70); margin-top: 2px; }
+    .bubble .msg{ font-size: 14px; margin-top: 4px; }
+
+    /* Marquee band (dark) */
+    .marquee{
+      margin-top: 26px;
+      border-top: 1px solid rgba(0,0,0,.10);
+      border-bottom: 1px solid rgba(0,0,0,.10);
+      overflow: hidden;
+      background: rgba(255,255,255,.55);
+    }
+    .marquee-track{
+      display:flex;
+      width: max-content;
+      animation: scroll 22s linear infinite;
+      gap: 14px;
+      padding: 12px 0;
+      will-change: transform;
+    }
+    .tag{
+      display:inline-flex;
+      gap: 10px;
+      align-items:center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.10);
+      font-size: 13px;
+      color: rgba(0,0,0,.72);
+      background: rgba(255,255,255,.70);
+      white-space: nowrap;
+    }
+    .tag b{ color: var(--ink); font-weight: 800; }
+    @keyframes scroll{
+      from{ transform: translateX(0); }
+      to{ transform: translateX(-50%); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .marquee-track{ animation: none; }
+    }
+
+    /* Eyebrow heading */
+    .eyebrow{
+      display:flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 16px;
+      margin-bottom: 18px;
+    }
+    .eyebrow .label{
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      text-transform: uppercase;
+    }
+    .eyebrow .rule{ flex: 1; height: 1px; background: var(--line); }
+
+    h2{
+      font-size: var(--h2);
+      line-height: 1.15;
+      letter-spacing: -0.01em;
+      margin: 0 0 10px;
+      font-weight: 900;
+    }
+
+    /* Dark band section like the screenshot */
+    .band-dark{
+      background: radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.06), transparent 60%), var(--dark);
+      color: var(--dark-ink);
+    }
+    .band-dark .divider{ border-top-color: var(--dark-line); }
+    .band-dark .muted{ color: var(--dark-muted); }
+    .band-dark .eyebrow .label{ color: var(--dark-muted); }
+    .band-dark .eyebrow .rule{ background: var(--dark-line); }
+    .band-dark .btn{ background: rgba(255,255,255,.08); border-color: var(--dark-line); color: var(--dark-ink); }
+    .band-dark .btn:hover{ background: rgba(255,255,255,.12); }
+    .band-dark .btn.primary{ background: var(--lime); color: rgba(0,0,0,.92); }
+
+    /* Cards grid */
+    .grid{
+      display:grid;
+      grid-template-columns: repeat(12, 1fr);
+      gap: 14px;
+    }
+    .card{
+      grid-column: span 4;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.72);
+      padding: 18px;
+      min-height: 190px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    .card:hover{ border-color: color-mix(in srgb, var(--line) 55%, var(--ink)); }
+    .card .pill{
+      display:inline-flex;
+      align-items:center;
+      gap: 10px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      color: rgba(0,0,0,.72);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      width: fit-content;
+    }
+    .pill .tiny{
+      width: 10px; height: 10px; border-radius: 99px;
+      background: conic-gradient(from 220deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan), var(--lime));
+    }
+    .card h3{ margin: 12px 0 8px; font-size: 18px; font-weight: 900; letter-spacing: -.01em; }
+    .card p{ color: var(--muted); font-size: 14px; }
+    .card .arrow{
+      position:absolute; right: 16px; bottom: 16px;
+      width: 34px; height: 34px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.10);
+      display:grid; place-items:center;
+      color: rgba(0,0,0,.62);
+      background: rgba(255,255,255,.65);
+    }
+
+    /* Dark cards variant (like “黒いカード＋色文字”) */
+    .card.dark{
+      background: linear-gradient(180deg, rgba(255,255,255,.07), rgba(255,255,255,.03));
+      border-color: var(--dark-line);
+      color: var(--dark-ink);
+      box-shadow: 0 18px 60px rgba(0,0,0,.35);
+    }
+    .card.dark p{ color: var(--dark-muted); }
+    .card.dark .pill{ background: rgba(255,255,255,.06); border-color: var(--dark-line); color: var(--dark-muted); }
+    .card.dark .arrow{ background: rgba(255,255,255,.06); border-color: var(--dark-line); color: var(--dark-muted); }
+
+    .accent-line{
+      height: 2px;
+      width: 100%;
+      border-radius: 99px;
+      background: linear-gradient(90deg, var(--lime), var(--orange), var(--pink), var(--purple), var(--cyan));
+      opacity: .95;
+      margin: 10px 0 0;
+    }
+
+    @media (max-width: 980px){ .card{ grid-column: span 6; } }
+    @media (max-width: 640px){ .card{ grid-column: span 12; } }
+
+    /* Feature rows */
+    .feature-row{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: clamp(18px, 3vw, 40px);
+      align-items: center;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    .feature-row + .feature-row{ margin-top: 14px; }
+    @media (max-width: 900px){ .feature-row{ grid-template-columns: 1fr; } }
+    .num{
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: .12em;
+      color: var(--muted);
+      margin-bottom: 10px;
+      text-transform: uppercase;
+    }
+    .feature-row h3{ font-size: var(--h3); margin: 0 0 8px; font-weight: 900; letter-spacing: -0.01em; }
+    .copy{ color: var(--muted); }
+
+    .mock{
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(0,0,0,.10);
+      background:
+        radial-gradient(220px 140px at 25% 25%, rgba(0,0,0,.06), transparent 60%),
+        radial-gradient(240px 160px at 70% 70%, rgba(0,0,0,.04), transparent 62%),
+        conic-gradient(from 230deg, rgba(202,255,26,.22), rgba(255,176,26,.16), rgba(255,61,122,.14), rgba(155,92,255,.14), rgba(0,215,255,.14), rgba(202,255,26,.22));
+      height: 220px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.10);
+      position: relative;
+      overflow: hidden;
+    }
+    .mock:before{
+      content:"";
+      position:absolute; inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,.55), transparent);
+      transform: translateX(-60%);
+      animation: sheen 2.6s ease-in-out infinite;
+      opacity: .55;
+      mix-blend-mode: overlay;
+    }
+    @keyframes sheen{
+      0%{ transform: translateX(-60%); }
+      50%{ transform: translateX(60%); }
+      100%{ transform: translateX(60%); opacity: 0; }
+    }
+    @media (prefers-reduced-motion: reduce){ .mock:before{ animation: none; opacity: .2; } }
+
+    /* Price */
+    .price{
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      background: rgba(255,255,255,.72);
+      padding: 22px;
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 20px;
+      align-items: start;
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    @media (max-width: 900px){ .price{ grid-template-columns: 1fr; } }
+    .price .amount{
+      font-size: clamp(34px, 4vw, 54px);
+      font-weight: 900;
+      letter-spacing: -0.03em;
+      margin: 12px 0 8px;
+    }
+    .list{
+      margin: 10px 0 0;
+      padding: 0;
+      list-style: none;
+      color: var(--muted);
+      display:grid;
+      gap: 10px;
+      font-size: 14px;
+    }
+    .list li{
+      display:grid;
+      grid-template-columns: 18px 1fr;
+      gap: 10px;
+      align-items:start;
+    }
+    .check{
+      width: 18px; height: 18px;
+      border-radius: 6px;
+      border: 1px solid rgba(0,0,0,.14);
+      display:grid; place-items:center;
+      font-size: 12px;
+      color: var(--ink);
+      background: rgba(255,255,255,.6);
+    }
+
+    /* FAQ */
+    .faq{
+      border: 1px solid var(--line);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      background: rgba(255,255,255,.72);
+      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    details{ border-bottom: 1px solid rgba(0,0,0,.08); padding: 16px 18px; }
+    details:last-child{ border-bottom: 0; }
+    summary{
+      cursor: pointer;
+      list-style: none;
+      display:flex;
+      gap: 12px;
+      align-items:center;
+      justify-content: space-between;
+      font-weight: 900;
+    }
+    summary::-webkit-details-marker{ display:none; }
+    .faq p{ color: var(--muted); margin-top: 10px; font-size: 14px; }
+
+    /* Footer */
+    footer{
+      padding: 54px 0 62px;
+      color: var(--dark-muted);
+      background: radial-gradient(1200px 600px at 50% 0%, rgba(255,255,255,.06), transparent 60%), var(--dark);
+    }
+    .footer-grid{
+      display:grid;
+      grid-template-columns: 1.2fr .8fr;
+      gap: 26px;
+      align-items: start;
+    }
+    @media (max-width: 900px){ .footer-grid{ grid-template-columns: 1fr; } }
+    .fineprint{ font-size: 12px; color: color-mix(in srgb, var(--dark-muted) 85%, transparent); }
+    .links{
+      display:grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px 16px;
+      margin-top: 10px;
+      font-size: 13px;
+    }
+    .links a{ padding: 6px 0; }
+    .links a:hover{ color: var(--dark-ink); }
+
+    /* Big ghost typography (screenshot-like vibe) */
+    .ghost{
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: -22px;
+      font-weight: 900;
+      letter-spacing: .06em;
+      font-size: clamp(54px, 10vw, 140px);
+      color: rgba(0,0,0,.06);
+      white-space: nowrap;
+      pointer-events:none;
+      user-select:none;
+    }
+    .band-dark .ghost{ color: rgba(255,255,255,.06); }
+
+    /* Reveal */
+    .reveal{ opacity: 0; transform: translateY(10px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity: 1; transform: translateY(0); }
+    @media (prefers-reduced-motion: reduce){
+      .reveal{ opacity: 1; transform: none; transition: none; }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="header">
+    <div class="container">
+      <div class="nav">
+        <a class="brand" href="#top" aria-label="ホームへ">
+          <span class="logo" aria-hidden="true"></span>
+          <span>
+            <strong>YOUR BRAND</strong>
+            <small>Minimal × Neon landing</small>
+          </span>
+        </a>
+
+        <nav class="menu" aria-label="メイン">
+          <a href="#themes">テーマ</a>
+          <a href="#features">特徴</a>
+          <a href="#who">おすすめ</a>
+          <a href="#price">料金</a>
+          <a href="#flow">流れ</a>
+          <a href="#faq">FAQ</a>
+        </nav>
+
+        <div class="actions">
+          <button class="btn burger" id="burger" aria-expanded="false" aria-controls="drawer">
+            <span class="dot" aria-hidden="true"></span> Menu
+          </button>
+          <a class="btn" href="#themes"><span class="dot" aria-hidden="true"></span>テーマ</a>
+          <a class="btn primary" href="#cta"><span class="dot" aria-hidden="true"></span>相談する</a>
+        </div>
+      </div>
+
+      <div class="drawer" id="drawer" role="region" aria-label="モバイルメニュー">
+        <a href="#themes">テーマ <span aria-hidden="true">→</span></a>
+        <a href="#features">特徴 <span aria-hidden="true">→</span></a>
+        <a href="#who">おすすめ <span aria-hidden="true">→</span></a>
+        <a href="#price">料金 <span aria-hidden="true">→</span></a>
+        <a href="#flow">流れ <span aria-hidden="true">→</span></a>
+        <a href="#faq">FAQ <span aria-hidden="true">→</span></a>
+      </div>
+    </div>
+  </header>
+
+  <main id="top">
+    <!-- HERO -->
+    <section class="hero">
+      <div class="container">
+        <div class="hero-grid">
+          <div class="reveal">
+            <div class="kicker">
+              <span class="dot" aria-hidden="true"></span>
+              <span>現場から生まれた</span>
+              <code>/ landing</code>
+            </div>
+
+            <h1>色と余白で<br><span class="hl">“強い見た目”</span>を作る<br>LPテンプレ</h1>
+            <p class="lead">
+              これは<strong>雰囲気（配色/余白/タイポ/構成）</strong>だけを参考にした<strong>オリジナル実装</strong>です。
+              文章・画像・固有UIはプレースホルダーなので、あなたのサービス用に差し替えて使えます。
+            </p>
+
+            <div class="hero-cta">
+              <a class="btn primary" href="#cta"><span class="dot" aria-hidden="true"></span>無料で相談する</a>
+              <a class="btn" href="#features"><span class="dot" aria-hidden="true"></span>特徴を見る</a>
+            </div>
+
+            <div class="marquee" aria-hidden="true">
+              <div class="marquee-track" id="marquee">
+                <span class="tag"><b>ネオン差し色</b>で視線誘導</span>
+                <span class="tag"><b>白×黒</b>で締める</span>
+                <span class="tag"><b>グラデ塊</b>で印象</span>
+                <span class="tag"><b>大きい文字</b>で強さ</span>
+                <span class="tag"><b>線と角丸</b>で整える</span>
+              </div>
+            </div>
+          </div>
+
+          <aside class="hero-card reveal" aria-label="課題の例（プレースホルダー）">
+            <div class="bubbles">
+              <div class="bubble">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <div style="font-weight:900;">制作側</div>
+                  <div class="role">デザインの方向性がブレる</div>
+                  <div class="msg">“色”のルールがない。</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <div style="font-weight:900;">運用側</div>
+                  <div class="role">更新が続かない</div>
+                  <div class="msg">見た目が崩れるのが怖い。</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <div style="font-weight:900;">営業側</div>
+                  <div class="role">提案が刺さらない</div>
+                  <div class="msg">“強み”が一瞬で伝わらない。</div>
+                </div>
+              </div>
+              <div class="bubble">
+                <div class="avatar" aria-hidden="true"></div>
+                <div>
+                  <div style="font-weight:900;">あなた</div>
+                  <div class="role">理想</div>
+                  <div class="msg">色で“印象”を作りたい。</div>
+                </div>
+              </div>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- THEMES -->
+    <section class="section" id="themes">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Theme</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">03</span>
+        </div>
+
+        <h2 class="reveal">用途に合わせて、<br>“型”から選ぶ</h2>
+        <p class="muted reveal">※カードの内容はサンプルです。あなたの商品/サービスに置き換えてください。</p>
+
+        <div class="grid" style="margin-top:18px;">
+          <a class="card reveal" href="#cta">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>採用</span>
+            <h3>採用サイト向け</h3>
+            <p>白ベース＋差し色で、安心感と勢いの両立。</p>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="card reveal" href="#cta">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>店舗</span>
+            <h3>店舗・サービス向け</h3>
+            <p>グラデ塊を“看板”として使い、印象を残す。</p>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+
+          <a class="card reveal" href="#cta">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>法人</span>
+            <h3>コーポレート向け</h3>
+            <p>黒帯セクションで締める。情報整理も得意。</p>
+            <span class="arrow" aria-hidden="true">→</span>
+          </a>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">YOUR BRAND YOUR BRAND</div>
+    </section>
+
+    <!-- DARK BAND (like the screenshot: black area with cards) -->
+    <section class="section band-dark" id="features">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Strength</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">01–03</span>
+        </div>
+
+        <h2 class="reveal">白で見せて、<br><span class="hl">黒で締める</span></h2>
+        <p class="muted reveal">色は“多用”ではなく、“置きどころ”が大事。アクセントは主に1色、補助2色まで。</p>
+
+        <div class="grid" style="margin-top:18px;">
+          <div class="card dark reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>STRENGTH 01</span>
+            <h3 style="color: var(--lime);">差し色は“狭く強く”</h3>
+            <p>見出しの一部、下線、アイコン、小さなラベルに集約して、バラけさせない。</p>
+            <div class="accent-line"></div>
+          </div>
+          <div class="card dark reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>STRENGTH 02</span>
+            <h3 style="color: var(--cyan);">グラデは“塊”で</h3>
+            <p>背景全体に撒かず、ヒーローや目立たせたいブロックに“塊”として置く。</p>
+            <div class="accent-line"></div>
+          </div>
+          <div class="card dark reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>STRENGTH 03</span>
+            <h3 style="color: var(--pink);">線と角丸で整える</h3>
+            <p>色を派手にしても“線”と“角丸”が揃うと、全体の品が保てます。</p>
+            <div class="accent-line"></div>
+          </div>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">FEATURES FEATURES</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- DETAILS -->
+    <section class="section" id="who">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Recommended</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">For you</span>
+        </div>
+
+        <h2 class="reveal">こんな人におすすめ</h2>
+
+        <div class="grid" style="margin-top:18px;">
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>01</span>
+            <h3>色の統一感を出したい</h3>
+            <p>差し色ルールを作って、迷わないデザインに。</p>
+          </div>
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>02</span>
+            <h3>“強い印象”が欲しい</h3>
+            <p>グラデ塊＋大きい文字で、ファーストビューを作る。</p>
+          </div>
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>03</span>
+            <h3>読みやすさも保ちたい</h3>
+            <p>背景は薄色、強調は最小面積、黒帯で引き締め。</p>
+          </div>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">RECOMMENDED</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FEATURE ROWS -->
+    <section class="section" id="details">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Structure</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">Blocks</span>
+        </div>
+
+        <h2 class="reveal">構造で、色の迷いを消す</h2>
+
+        <div style="margin-top:18px;">
+          <div class="feature-row reveal">
+            <div>
+              <div class="num">BLOCK 01</div>
+              <h3>ヒーローだけ、派手に</h3>
+              <p class="copy">背景グラデは“看板”。他は落ち着かせてコントラストで勝つ。</p>
+            </div>
+            <div class="mock" aria-label="プレースホルダー画像"></div>
+          </div>
+
+          <div class="feature-row reveal">
+            <div>
+              <div class="num">BLOCK 02</div>
+              <h3>黒帯を途中に入れる</h3>
+              <p class="copy">白→黒→白のリズムで、読み進めるテンポを作る。</p>
+            </div>
+            <div class="mock" aria-label="プレースホルダー画像"></div>
+          </div>
+
+          <div class="feature-row reveal">
+            <div>
+              <div class="num">BLOCK 03</div>
+              <h3>強調は“線”で行う</h3>
+              <p class="copy">ベタ塗りより、細い線・下線・小さなラベルが上品に効く。</p>
+            </div>
+            <div class="mock" aria-label="プレースホルダー画像"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- PRICE -->
+    <section class="section" id="price">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Price</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">Simple</span>
+        </div>
+
+        <div class="price reveal">
+          <div>
+            <h2>料金</h2>
+            <div class="amount">¥XX,XXX <span style="font-size:16px; font-weight:900; color: var(--muted);">（税込）</span></div>
+            <p class="muted">※ここはあなたの価格に置き換え。キャンペーンは <span class="hl">下線</span> で目立たせると良いです。</p>
+
+            <div style="margin-top:14px; display:flex; gap:10px; flex-wrap:wrap;">
+              <a class="btn primary" href="#cta"><span class="dot" aria-hidden="true"></span>今すぐ相談</a>
+              <a class="btn" href="#flow"><span class="dot" aria-hidden="true"></span>導入の流れ</a>
+            </div>
+          </div>
+
+          <div>
+            <div class="num">INCLUDED</div>
+            <ul class="list">
+              <li><span class="check" aria-hidden="true">✓</span><span>配色変数（差し色/黒帯/背景）</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>ヒーローのグラデ塊（CSSのみ）</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>黒いカード＋色文字のブロック</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>レスポンシブ（PC/Tablet/Smartphone）</span></li>
+              <li><span class="check" aria-hidden="true">✓</span><span>軽量スクロール表示アニメ</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">PRICE PRICE PRICE</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FLOW -->
+    <section class="section" id="flow">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">Flow</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">03</span>
+        </div>
+
+        <h2 class="reveal">導入までの流れ</h2>
+
+        <div class="grid" style="margin-top:18px;">
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>Step 01</span>
+            <h3>要件整理</h3>
+            <p>“差し色1色”と“黒帯の有無”を先に決める。</p>
+          </div>
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>Step 02</span>
+            <h3>テンプレ適用</h3>
+            <p>セクションに当てはめて、構造と余白を固める。</p>
+          </div>
+          <div class="card reveal">
+            <span class="pill"><span class="tiny" aria-hidden="true"></span>Step 03</span>
+            <h3>強調だけ入れる</h3>
+            <p>最後に <span class="hl">下線</span> とラベルだけ入れて完成。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="container">
+        <div class="eyebrow reveal">
+          <span class="label">FAQ</span>
+          <span class="rule" aria-hidden="true"></span>
+          <span class="label" aria-hidden="true">Q&A</span>
+        </div>
+
+        <div class="faq reveal" role="list">
+          <details>
+            <summary><span>Q. 色を増やしすぎないコツは？</span><span aria-hidden="true">＋</span></summary>
+            <p>A. 「ベース（白/薄灰）」「締め（黒帯）」「差し色（1色）」「補助（2色まで）」の4カテゴリに分けると破綻しにくいです。</p>
+          </details>
+          <details>
+            <summary><span>Q. グラデを入れる場所は？</span><span aria-hidden="true">＋</span></summary>
+            <p>A. 原則はヒーローや“最も見せたい”1ブロックだけ。全体に撒くと安っぽくなりやすいです。</p>
+          </details>
+          <details>
+            <summary><span>Q. もっと近づけるなら？</span><span aria-hidden="true">＋</span></summary>
+            <p>A. ①余白 ②見出しの改行 ③黒帯の頻度 ④ラベルの形 ⑤線の濃さ。この5点を詰めると“それっぽさ”が出ます。</p>
+          </details>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">FAQ FAQ FAQ</div>
+    </section>
+
+    <div class="divider"></div>
+
+    <!-- CTA -->
+    <section class="section band-dark" id="cta">
+      <div class="container">
+        <div class="feature-row reveal" style="background: linear-gradient(180deg, rgba(255,255,255,.08), rgba(255,255,255,.04)); border-color: var(--dark-line);">
+          <div>
+            <div class="num" style="color: var(--dark-muted);">CALL TO ACTION</div>
+            <h2 style="margin-bottom:10px; color: var(--dark-ink);">このテンプレを<br><span class="hl">あなたのLP</span>に落とし込む</h2>
+            <p class="muted" style="color: var(--dark-muted);">CTAボタンは“目立たせたい色”を使うのが鉄板です。</p>
+          </div>
+          <div style="display:grid; gap: 10px;">
+            <a class="btn primary" href="#" onclick="fakeSubmit(event)"><span class="dot" aria-hidden="true"></span>相談フォームへ</a>
+            <a class="btn" href="#top"><span class="dot" aria-hidden="true"></span>トップへ戻る</a>
+            <div class="fineprint">※このボタンはデモです。フォームやCalendly等に差し替えてください。</div>
+          </div>
+        </div>
+      </div>
+      <div class="ghost" aria-hidden="true">CONTACT CONTACT</div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container footer-grid">
+      <div>
+        <div style="display:flex; align-items:center; gap: 12px;">
+          <span class="logo" aria-hidden="true" style="width:32px; height:32px; border-radius: 12px; border-color: var(--dark-line);"></span>
+          <div>
+            <div style="font-weight:900; color: var(--dark-ink); letter-spacing:.02em;">YOUR BRAND</div>
+            <div class="fineprint">A minimal LP template with bold color accents.</div>
+          </div>
+        </div>
+        <p class="fineprint" style="margin-top:12px;">
+          このファイルは「雰囲気」を参考にした<strong>オリジナル実装</strong>です。元サイトの文章・画像・CSS/JSの複製は含みません。
+        </p>
+      </div>
+
+      <div>
+        <div class="links">
+          <a href="#themes">テーマ</a>
+          <a href="#features">特徴</a>
+          <a href="#who">おすすめ</a>
+          <a href="#price">料金</a>
+          <a href="#flow">流れ</a>
+          <a href="#faq">FAQ</a>
+        </div>
+        <div class="fineprint" style="margin-top: 14px;">© <span id="year"></span> YOUR BRAND</div>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Mobile drawer
+    const burger = document.getElementById('burger');
+    const drawer = document.getElementById('drawer');
+
+    function setDrawer(open){
+      drawer.classList.toggle('open', open);
+      burger?.setAttribute('aria-expanded', String(open));
+    }
+
+    burger?.addEventListener('click', () => {
+      const isOpen = drawer.classList.contains('open');
+      setDrawer(!isOpen);
+    });
+
+    drawer?.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => setDrawer(false));
+    });
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) e.target.classList.add('in');
+      });
+    }, { threshold: 0.12 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Current year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Demo submit
+    function fakeSubmit(e){
+      e.preventDefault();
+      alert('デモです。フォームURLに差し替えてください。');
+    }
+    window.fakeSubmit = fakeSubmit;
+
+    // Marquee: duplicate nodes to ensure seamless loop
+    (function(){
+      const track = document.getElementById('marquee');
+      if(!track) return;
+      const base = Array.from(track.children);
+      // Ensure we have enough items for a smooth loop
+      base.slice(0, Math.min(6, base.length)).forEach(n => track.appendChild(n.cloneNode(true)));
+    })();
+  </script>
+</body>
+</html>

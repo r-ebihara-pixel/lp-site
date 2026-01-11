@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>未経験歓迎の落とし穴</title>
+<style>
+    /* 基本設定 */
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", "Hiragino Sans", Meiryo, sans-serif;
+        background-color: #f2f2f2; /* 全体の背景色 */
+        color: #333;
+        min-height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        overflow-x: hidden; /* 横スクロールを防ぐ */
+    }
+
+    /* 全体のコンテナ */
+    .container {
+        position: relative;
+        width: 100%;
+        max-width: 1000px;
+        padding: 20px;
+        box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 10; /* 背景文字より手前に表示 */
+    }
+
+    /* 背景の大きな文字 */
+    .bg-text {
+        position: fixed;
+        top: 50%;
+        transform: translateY(-50%);
+        font-size: clamp(4rem, 15vw, 10rem); /* レスポンシブなフォントサイズ */
+        font-weight: 900;
+        color: #ccc;
+        opacity: 0.3;
+        z-index: 0; /* 最背面に配置 */
+        writing-mode: vertical-rl; /* 縦書き */
+        user-select: none; /* 選択不可にする */
+        pointer-events: none; /* クリックイベントを透過 */
+    }
+
+    .bg-left {
+        left: 2%;
+        transform: translateY(-50%) rotate(180deg); /* 下から上へ読む向きに */
+    }
+
+    .bg-right {
+        right: 2%;
+    }
+
+    /* 中央のコンテンツ（イラストとメッセージボックス） */
+    .main-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 100%;
+        max-width: 700px;
+    }
+
+    /* イラスト画像エリア */
+    .illustration-area {
+        width: 100%;
+        max-width: 600px; /* 画像の最大幅 */
+        margin-bottom: 30px;
+    }
+
+    .illustration-area img {
+        width: 100%;
+        height: auto;
+        display: block;
+    }
+
+    /* 下部のメッセージボックス */
+    .message-box {
+        background-color: #fff;
+        padding: 40px 30px;
+        border-radius: 12px;
+        text-align: center;
+        box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+        width: 100%;
+        box-sizing: border-box;
+    }
+
+    .headline {
+        font-size: 1.6rem;
+        font-weight: bold;
+        margin-bottom: 25px;
+        line-height: 1.4;
+        color: #000;
+    }
+
+    .body-text {
+        font-size: 1rem;
+        line-height: 1.8;
+        color: #666;
+        text-align: left;
+        display: inline-block; /* テキストを中央揃えしつつ、左寄せで読むため */
+    }
+
+    /* 赤文字の強調 */
+    .highlight {
+        color: #d93025;
+        font-weight: bold;
+    }
+
+    /* スマートフォン向けの調整 */
+    @media (max-width: 768px) {
+        .bg-text {
+            display: none; /* スマホでは背景文字を非表示にしてすっきりさせる */
+        }
+        .container {
+            padding: 40px 20px;
+        }
+        .message-box {
+            padding: 30px 20px;
+        }
+        .headline {
+            font-size: 1.3rem;
+        }
+        .body-text {
+            font-size: 0.9rem;
+        }
+    }
+</style>
+</head>
+<body>
+
+    <div class="bg-text bg-left">WARNING</div>
+    <div class="bg-text bg-right">MANY QUESTION</div>
+
+    <div class="container">
+        <div class="main-content">
+            <div class="illustration-area">
+                <img src="https://placehold.jp/600x400.png?text=ここにイラスト画像を配置" alt="イラスト">
+            </div>
+
+            <div class="message-box">
+                <h1 class="headline">
+                    「未経験歓迎」の求人に、<br>
+                    騙されないでください。
+                </h1>
+                <p class="body-text">
+                    スキルなしで入社すると、単調なデータ入力や家電販売など、<br>
+                    エンジニアとは程遠い現場に配属されるリスクがあります。<br>
+                    まずは確かな<span class="highlight">「武器（技術）」</span>を持つことから始めましょう。
+                </p>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

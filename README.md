@@ -1,36 +1,68 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# TechCareer - 求職者向けランディングページ
 
-## Getting Started
+インフラエンジニア採用のためのランディングページです。
 
-First, run the development server:
+## 技術スタック
+
+- **フレームワーク**: Next.js 16 (App Router)
+- **スタイリング**: Tailwind CSS
+- **UIコンポーネント**: Shadcn UI
+- **アイコン**: Lucide React
+- **言語**: TypeScript
+
+## カラースキーム
+
+- **プライマリ**: ネイビー（信頼感を表現）
+- **アクセント**: オレンジ（行動を促す）
+
+## ページ構成
+
+1. **ヒーローエリア** - メインビジュアルとCTA
+2. **悩み共感セクション** - ターゲットの課題を提示
+3. **解決策セクション** - インフラエンジニアという選択肢を提案
+4. **会社の特徴セクション** - 当社で働くメリット
+5. **お問い合わせフォーム** - リード獲得
+
+## 開発環境の起動
 
 ```bash
+cd lp-site
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+http://localhost:3000 でアクセスできます。
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## ビルド
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+```bash
+npm run build
+npm start
+```
 
-## Learn More
+## ディレクトリ構成
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```
+lp-site/
+├── src/
+│   ├── app/
+│   │   ├── globals.css      # グローバルスタイル・カスタムカラー
+│   │   ├── layout.tsx       # ルートレイアウト
+│   │   └── page.tsx         # メインページ
+│   ├── components/
+│   │   ├── sections/        # ページセクション
+│   │   │   ├── hero-section.tsx
+│   │   │   ├── pain-points-section.tsx
+│   │   │   ├── solution-section.tsx
+│   │   │   ├── features-section.tsx
+│   │   │   ├── contact-form-section.tsx
+│   │   │   └── footer.tsx
+│   │   └── ui/              # UIコンポーネント
+│   │       ├── button.tsx
+│   │       ├── input.tsx
+│   │       ├── label.tsx
+│   │       └── textarea.tsx
+│   └── lib/
+│       └── utils.ts         # ユーティリティ関数
+└── package.json
+```
