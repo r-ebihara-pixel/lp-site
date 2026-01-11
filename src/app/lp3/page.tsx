@@ -183,7 +183,7 @@ const QuizComponent = () => {
       </div>
       
       {/* 賑やかし要素 */}
-      <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity, ease: "linear" }} className="absolute -top-20 -right-20 w-64 h-64 border-[40px] border-purple-100 rounded-full -z-0 opacity-50" />
+      <motion.div animate={{ rotate: 360 }} transition={{ duration: 20, repeat: Infinity }} className="absolute -top-20 -right-20 w-64 h-64 border-[40px] border-purple-100 rounded-full -z-0 opacity-50" />
       <motion.div animate={{ y: [0, 40, 0] }} transition={{ duration: 6, repeat: Infinity }} className="absolute bottom-[-100px] left-[-60px] w-48 h-48 bg-fuchsia-100 rounded-[60px] -z-0 opacity-50 rotate-12" />
     </div>
   );
