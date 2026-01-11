@@ -5,6 +5,7 @@ import { motion, useScroll, useTransform, type HTMLMotionProps } from 'framer-mo
 import { ArrowRight, CheckCircle2, Footprints, Calendar, Monitor, Coffee, Sparkles, Zap, Smartphone } from 'lucide-react';
 import { Button } from "@/components/ui/button";
 
+// Animation props with type safety - no string ease allowed
 const fadeIn = {
   initial: { opacity: 0, y: 30 },
   whileInView: { opacity: 1, y: 0 },
